@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}About — Freshcheck{% endblock %}
+
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container">
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Computer Vision for Food Safety</span>
+              <span class="site-heading-lower"><span class="cap">F</span>resh<span class="cap">V</span>ision</span>
+            </h2>
+            <p>FreshVision is a three-class image classifier that determines whether produce is fresh or spoiled. Upload a photo and the model returns a confidence score for each class in under a second.</p>
+
+            <h5 class="mt-4 mb-2" style="font-family:Raleway; font-weight:700;">Preprocessing</h5>
+            <p class="mb-3">Uploaded images are sent directly to the FreshVision inference engine. The model handles all internal preprocessing including resizing and normalization before classification.</p>
+
+            <h5 class="mb-2" style="font-family:Raleway; font-weight:700;">Inference</h5>
+            <p class="mb-3">FreshVision uses a deep learning model hosted on Hugging Face, accessed via the Gradio API. Each image is analysed and returns a freshness score out of 100 along with a classification label.</p>
+            <h5 class="mb-2" style="font-family:Raleway; font-weight:700;">Tech Stack</h5>
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-unstyled small">
+                  <li class="mb-1"><strong>Backend:</strong> Flask 3.0, Python 3.10, Gunicorn</li>
+                  <li class="mb-1"><strong>ML:</strong> TensorFlow / Keras, NumPy</li>
+                  <li class="mb-1"><strong>Image:</strong> Pillow</li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-unstyled small">
+                  <li class="mb-1"><strong>Database:</strong> SQLite</li>
+                  <li class="mb-1"><strong>Auth:</strong> Flask-Bcrypt</li>
+                  <li class="mb-1"><strong>Deploy:</strong> Docker, docker-compose</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

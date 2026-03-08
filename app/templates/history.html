@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}History — Freshcheck{% endblock %}
+
+{% block content %}
+<section class="page-section">
+  <div class="container">
+    <h2 class="section-heading mb-4 text-center">
+      <span class="section-heading-upper">{{ total }} record{% if total != 1 %}s{% endif %}</span>
+      <span class="section-heading-lower">Prediction Log</span>
+    </h2>
+
+    <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+      <a href="{{ url_for('history.history') }}" class="btn btn-sm {% if not label_filter %}btn-primary{% else %}btn-outline-secondary{% endif %}">All</a>
+      <a href="{{ url_for('history.history', label='fresh') }}" class="btn btn-sm {% if label_filter == 'fresh' %}btn-success{% else %}btn-outline-success{% endif %}">Fresh</a>
+      
+      <a href="{{ url_for('history.history', label='spoiled') }}" class="btn btn-sm {% if label_filter == 'spoiled' %}btn-danger{% else %}btn-outline-danger{% endif %}">Spoiled</a>
+    </div>
+
+    {% if rows %}
+    <div class="bg-faded rounded p-4">
+      <div class="table-responsive">
+        <table class="table table-borderless align-middle mb-0">
+          <thead>
+            <tr style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid #dee2e6;">
+              <th>Image</th>
+              <th>File</th>
+              <th>Label</th>
+              <th>Confidence</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr style="border-bottom:1px solid rgba(0,0,0,0.05);">
+              <td>
+                <img
+                  src="{{ url_for('static', filename='uploads/' + row['filename']) }}"
+                  alt="{{ row['original_name'] }}"
+                  style="width:48px; height:48px; object-fit:cover; border-radius:6px; border:1px solid #dee2e6;"
+                >
+              </td>
+              <td>
+                <span class="small text-muted" style="font-family:monospace;">{{ row['original_name'] }}</span>
+              </td>
+              <td>
+                {% if row['label'] == 'fresh' %}
+                  <span class="badge bg-success">{{ row['display_label'] }}</span>
+                {% elif row['label'] == 'moderately_fresh' %}
+                  <span class="badge" style="background:#e6a756;">{{ row['display_label'] }}</span>
+                {% else %}
+                  <span class="badge bg-danger">{{ row['display_label'] }}</span>
+                {% endif %}
+              </td>
+              <td><span class="small fw-bold" style="font-family:Raleway;">{{ "%.1f"|format(row['confidence']) }}%</span></td>
+              <td><span class="small text-muted">{{ row['created_at'] }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {% if total_pages > 1 %}
+    <nav class="mt-4 d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+          <a class="page-link" href="{{ url_for('history.history', page=page-1, label=label_filter) }}">&laquo;</a>
+        </li>
+        {% for p in range(1, total_pages + 1) %}
+          {% if p == page %}
+            <li class="page-item active"><span class="page-link">{{ p }}</span></li>
+          {% elif p == 1 or p == total_pages or (p >= page - 2 and p <= page + 2) %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('history.history', page=p, label=label_filter) }}">{{ p }}</a></li>
+          {% elif p == page - 3 or p == page + 3 %}
+            <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+          {% endif %}
+        {% endfor %}
+        <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+          <a class="page-link" href="{{ url_for('history.history', page=page+1, label=label_filter) }}">&raquo;</a>
+        </li>
+      </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="text-center py-5 text-muted">
+      <p>No predictions yet. <a href="{{ url_for('predict.upload') }}">Upload an image</a> to get started.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
