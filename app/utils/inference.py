@@ -7,7 +7,10 @@ _client = None
 def _get_client():
     global _client
     if _client is None:
-        _client = Client("Lazypanda0103/Unified-Comprehensive-Freshness-Classification")
+        _client = Client(
+            "Lazypanda0103/Unified-Comprehensive-Freshness-Classification",
+            httpx_kwargs={"timeout": 120}
+        )
     return _client
 
 
