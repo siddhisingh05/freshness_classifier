@@ -118,7 +118,7 @@
 }
 
 header {
-  background-color: #2F170F;
+  background-color: #2b2f0f;
 }
 
 #dropzone:hover {
@@ -179,4 +179,79 @@ body {
 .site-heading-lower .cap {
   font-size: 120%;
   color: #5ba3a3;
+}
+body.home-page::before {
+  background-color: #0a1a1a !important;
+  opacity: 0.65 !important;
+}
+
+.home-masthead h1 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 20px rgba(231, 212, 212, 0.5);
+}
+
+.home-masthead p {
+  color: rgba(255,255,255,0.9) !important;
+}
+body.home-page .home-how .section-heading-lower {
+  color: #ffffff !important;
+}
+
+body.home-page .home-how .section-heading-upper {
+  color: #5ba3a3 !important;
+}
+
+body.home-page .home-how .how-card-body p {
+  color: rgba(255,255,255,0.85) !important;
+}
+body.home-page .site-heading-upper {
+  color: #a8d0d0 !important;
+}
+
+body.home-page .site-heading-lower {
+  color: #ffffff !important;
+}
+
+body.home-page #mainNav .nav-link {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+body.home-page .home-masthead h1 {
+  color: #ffffff !important;
+}
+
+body.home-page .home-masthead p {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+body.home-page .home-how .section-heading-upper {
+  color: #5ba3a3 !important;
+}
+
+body.home-page .home-how .section-heading-lower {
+  color: #ffffff !important;
+}
+
+body.home-page .how-card-body p {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+body.home-page footer p {
+  color: rgba(255,255,255,0.5) !important;
+}
+
+body.home-page .btn-primary {
+  color: #ffffff !important;
+}
+
+body.home-page .text-muted {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+body.home-page .section-heading-upper {
+  color: #5ba3a3 !important;
+}
+header {
+  padding: 1.5rem 0 !important;
+  border-bottom: 4px solid #5ba3a3 !important;
 }
