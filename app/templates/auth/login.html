@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Login — Freshcheck{% endblock %}
+{% block title %}Login — FreshVision{% endblock %}
 
 {% block content %}
 <section class="page-section">
@@ -14,19 +14,18 @@
 
           <form method="POST" action="{{ url_for('auth.login') }}">
             <div class="mb-3">
-              <label for="username" class="form-label fw-bold" style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">Username</label>
-              <input type="text" class="form-control" id="username" name="username" autocomplete="username" required>
+              <label class="form-label fw-bold" style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">Username</label>
+              <input type="text" class="form-control" name="username" autocomplete="username" required>
             </div>
             <div class="mb-4">
-              <label for="password" class="form-label fw-bold" style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">Password</label>
-              <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
+              <label class="form-label fw-bold" style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">Password</label>
+              <input type="password" class="form-control" name="password" autocomplete="current-password" required>
             </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary btn-xl w-100">Log In</button>
-            </div>
+            <button type="submit" class="btn btn-primary btn-xl w-100">Log In</button>
           </form>
 
-          <p class="text-center mt-4 mb-0 small">Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+          <p class="text-center mt-3 mb-0 small"><a href="{{ url_for('auth.forgot_password') }}">Forgot password?</a></p>
+          <p class="text-center mt-2 mb-0 small">Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
         </div>
       </div>
     </div>

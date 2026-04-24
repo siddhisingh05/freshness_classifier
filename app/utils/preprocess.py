@@ -1,14 +1,23 @@
 import numpy as np
 from PIL import Image
 
-TARGET_SIZE = (224, 224)
-MEAN = np.array([0.485, 0.456, 0.406], dtype=np.float32)
-STD = np.array([0.229, 0.224, 0.225], dtype=np.float32)
+size = (224, 224)
+
+mean_vals = [0.485, 0.456, 0.406]
+std_vals = [0.229, 0.224, 0.225]
 
 
-def load_and_preprocess(path: str) -> np.ndarray:
+def load_and_preprocess(path):
     img = Image.open(path).convert("RGB")
-    img = img.resize(TARGET_SIZE, Image.LANCZOS)
-    arr = np.array(img, dtype=np.float32) / 255.0
-    arr = (arr - MEAN) / STD
-    return np.expand_dims(arr, axis=0)
+    img = img.resize(size)
+
+    arr = np.array(img).astype("float32") / 255.0
+
+    mean = np.array(mean_vals, dtype="float32")
+    std = np.array(std_vals, dtype="float32")
+
+    arr = (arr - mean) / std
+
+    arr = np.expand_dims(arr, axis=0)
+
+    return arr

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Verify Answer — FreshVision{% endblock %}
+
+{% block content %}
+<section class="page-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="bg-faded rounded p-5">
+          <h2 class="section-heading mb-4 text-center">
+            <span class="section-heading-upper">Security Check</span>
+            <span class="section-heading-lower">Verify Identity</span>
+          </h2>
+          <form method="POST">
+            <div class="mb-4">
+              <label class="form-label fw-bold" style="font-family:Raleway; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">{{ question }}</label>
+              <input type="text" class="form-control" name="secret_answer" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-xl w-100">Verify</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
